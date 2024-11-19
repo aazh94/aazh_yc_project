@@ -1,0 +1,17 @@
+- hosts: web
+  become: true
+  tasks:
+    - name: Обновление кэша apt
+      apt:
+        update_cache: yes
+
+    - name: Установка Nginx
+      apt:
+        name: nginx
+        state: present
+
+    - name: Запуск и включение Nginx
+      systemd:
+        name: nginx
+        state: started
+        enabled: true
