@@ -1,0 +1,15 @@
+---
+- name: Update web pages on web servers
+  hosts: webservers
+  become: yes
+  vars:
+    server_numbers:
+      web-server-0.ru-central1.internal: 1
+      web-server-1.ru-central1.internal: 2
+  tasks:
+    - name: Copy custom index.html to web server
+      template:
+        src: templates/index.html.j2
+        dest: /var/www/html/index.html
+      vars:
+        server_number: "{{ server_numbers[inventory_hostname] }}"
