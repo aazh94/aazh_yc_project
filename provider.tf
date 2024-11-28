@@ -1,15 +1,15 @@
 terraform {
   required_providers {
     yandex = {
-      source = "yandex-cloud/yandex"
+      source  = "yandex-cloud/yandex"
+      version = "~> 0.84"
     }
   }
-  required_version = ">= 0.13"
+  required_version = ">= 1.0.0"
 }
 
 provider "yandex" {
-  cloud_id  = "b1g10uoej2sc4a2q2iii"
-  folder_id = "b1ghogsb3rjondr2ektf"
+  cloud_id  = var.cloud_id
+  folder_id = var.folder_id
   zone      = "ru-central1-a"
-  
 }

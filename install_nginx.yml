@@ -1,17 +1,20 @@
-- hosts: web
-  become: true
+---
+- name: Install Nginx on web servers
+  hosts: webservers
+  become: yes
   tasks:
-    - name: Обновление кэша apt
+    - name: Update APT package index
       apt:
         update_cache: yes
+        cache_valid_time: 3600
 
-    - name: Установка Nginx
+    - name: Install Nginx
       apt:
         name: nginx
         state: present
 
-    - name: Запуск и включение Nginx
-      systemd:
+    - name: Ensure Nginx is running and enabled
+      service:
         name: nginx
         state: started
-        enabled: true
+        enabled: yes

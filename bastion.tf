@@ -1,7 +1,3 @@
-data "yandex_compute_image" "ubuntu" {
-  family = "ubuntu-2004-lts"
-}
-
 resource "yandex_compute_instance" "bastion" {
   name        = "bastion"
   hostname    = "bastion"
@@ -27,7 +23,9 @@ resource "yandex_compute_instance" "bastion" {
   }
 
   metadata = {
+    ssh-keys = "ubuntu:${file("~/.ssh/id_rsa.pub")}"
     user-data = <<-EOF
+      #cloud-config
       write_files:
         - path: /etc/sysctl.d/99-custom.conf
           content: |
@@ -36,6 +34,5 @@ resource "yandex_compute_instance" "bastion" {
         - sysctl --system
         - iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
     EOF
-    ssh-keys = "ubuntu:${file("~/.ssh/id_rsa.pub")}"
   }
 }
