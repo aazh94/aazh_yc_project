@@ -1,7 +1,7 @@
 {
   "version": 4,
   "terraform_version": "1.5.5",
-  "serial": 81,
+  "serial": 57,
   "lineage": "b783d9f8-eb8a-510a-99f2-84d31b5e6c24",
   "outputs": {},
   "resources": [
@@ -59,8 +59,8 @@
             "boot_disk": [
               {
                 "auto_delete": true,
-                "device_name": "fhm4j5mga217jtrqm04f",
-                "disk_id": "fhm4j5mga217jtrqm04f",
+                "device_name": "fhmaunjhv3bkdapmpdgs",
+                "disk_id": "fhmaunjhv3bkdapmpdgs",
                 "initialize_params": [
                   {
                     "block_size": 4096,
@@ -75,7 +75,7 @@
                 "mode": "READ_WRITE"
               }
             ],
-            "created_at": "2024-11-19T19:53:56Z",
+            "created_at": "2024-11-19T16:24:00Z",
             "description": "",
             "filesystem": [],
             "folder_id": "b1ghogsb3rjondr2ektf",
@@ -92,13 +92,13 @@
               }
             ],
             "hostname": "bastion",
-            "id": "fhman2m5e0crnv73541r",
-            "labels": null,
+            "id": "fhm8cvbug2lrgctsqj0e",
+            "labels": {},
             "local_disk": [],
             "maintenance_grace_period": "",
             "maintenance_policy": null,
             "metadata": {
-              "ssh-keys": "ubuntu:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDdMZmeNv0/Vm8AFI39D8dT1YCwFK4TxsOMYI2pfl01AcESUiNip4zvqztDqLSu1nDwzgsa5v6ryeHsZdJHcLzqcCuww0k0c/sb8/5P1hh8cSoEa3RFZRC7P+6ZSrRgksMaJfUzBMYdBDvBFUh4KeZ3LbVY4vWKkqPAh29WJmMlEzo/HbzXNUo9tRXNaRnLP59P5MXdR5SdZMj1voenGdxK023ZjZTvVY2PCamYq9tY1BHDyg9D9nChJEfIbJWbiBfRgFhy3ke35EuYpjW34rZW6HJbR+/QEDi2Lekh7bOjPq489Ha0NgIM23TcbCuAoIwYXlRpuBT3BDykmHm+XoE1 art@DESKTOP-4MLNIQC\n",
+              "ssh-keys": "ubuntu:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCfI8v/7qc6R2jPvNfTff5bbY19xb7g8wkit7zbGA6HmefXEh8WivUGNZJ4CdAa2n4E+yL8FTRGU5ilN4maCsJua5sJKd2QxALtJb+eZWBqjb2NpZRl09ffukt5D9P9ZZLcK0KfGAiv50ujUBhNL9a89JmKjooFsn4FP7bz3QtOeHc+6bDChmo1MBNBKkvC13Ad64lxjfVYO27IgLFycmoJK1hOjx/XMd0fkqAm2SAtrKLZ0pr6eBcJzFLmmH9J7ByJh8D0yNxTPU5c2+YDWj1mgqOksg+jQow52CG92nD6u2hmg4jESP284odyXfQvh99mL98Bap0I3TKix1YoShXF art@DESKTOP-4MLNIQC\n",
               "user-data": "write_files:\n  - path: /etc/sysctl.d/99-custom.conf\n    content: |\n      net.ipv4.ip_forward=1\nruncmd:\n  - sysctl --system\n  - iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE\n"
             },
             "metadata_options": [
@@ -115,15 +115,15 @@
               {
                 "dns_record": [],
                 "index": 0,
-                "ip_address": "10.0.0.20",
+                "ip_address": "10.0.0.11",
                 "ipv4": true,
                 "ipv6": false,
                 "ipv6_address": "",
                 "ipv6_dns_record": [],
-                "mac_address": "d0:0d:ab:8a:c5:70",
+                "mac_address": "d0:0d:86:7d:7e:80",
                 "nat": true,
                 "nat_dns_record": [],
-                "nat_ip_address": "89.169.130.31",
+                "nat_ip_address": "",
                 "nat_ip_version": "IPV4",
                 "security_group_ids": [],
                 "subnet_id": "e9bgnkvuiqj6kq2fk6t0"
@@ -152,7 +152,7 @@
             ],
             "secondary_disk": [],
             "service_account_id": "",
-            "status": "running",
+            "status": "stopped",
             "timeouts": null,
             "zone": "ru-central1-a"
           },
@@ -160,6 +160,7 @@
           "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozMDAwMDAwMDAwMDAsImRlbGV0ZSI6MzAwMDAwMDAwMDAwLCJ1cGRhdGUiOjMwMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMSJ9",
           "dependencies": [
             "data.yandex_compute_image.ubuntu",
+            "yandex_vpc_network.default",
             "yandex_vpc_subnet.public"
           ]
         }
@@ -168,135 +169,20 @@
     {
       "mode": "managed",
       "type": "yandex_compute_instance",
-      "name": "web_server",
+      "name": "web",
       "provider": "provider[\"registry.terraform.io/yandex-cloud/yandex\"]",
       "instances": [
-        {
-          "index_key": 0,
-          "schema_version": 1,
-          "attributes": {
-            "allow_recreate": null,
-            "allow_stopping_for_update": true,
-            "boot_disk": [
-              {
-                "auto_delete": true,
-                "device_name": "fhm7pdf52bq7v7evstad",
-                "disk_id": "fhm7pdf52bq7v7evstad",
-                "initialize_params": [
-                  {
-                    "block_size": 4096,
-                    "description": "",
-                    "image_id": "fd83oatl958aafrtsseg",
-                    "name": "",
-                    "size": 5,
-                    "snapshot_id": "",
-                    "type": "network-hdd"
-                  }
-                ],
-                "mode": "READ_WRITE"
-              }
-            ],
-            "created_at": "2024-11-19T19:14:00Z",
-            "description": "",
-            "filesystem": [],
-            "folder_id": "b1ghogsb3rjondr2ektf",
-            "fqdn": "fhm1g3b55tk810fprcn2.auto.internal",
-            "gpu_cluster_id": "",
-            "hardware_generation": [
-              {
-                "generation2_features": [],
-                "legacy_features": [
-                  {
-                    "pci_topology": "PCI_TOPOLOGY_V1"
-                  }
-                ]
-              }
-            ],
-            "hostname": "",
-            "id": "fhm1g3b55tk810fprcn2",
-            "labels": {},
-            "local_disk": [],
-            "maintenance_grace_period": "",
-            "maintenance_policy": null,
-            "metadata": {
-              "ssh-keys": "ubuntu:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDdMZmeNv0/Vm8AFI39D8dT1YCwFK4TxsOMYI2pfl01AcESUiNip4zvqztDqLSu1nDwzgsa5v6ryeHsZdJHcLzqcCuww0k0c/sb8/5P1hh8cSoEa3RFZRC7P+6ZSrRgksMaJfUzBMYdBDvBFUh4KeZ3LbVY4vWKkqPAh29WJmMlEzo/HbzXNUo9tRXNaRnLP59P5MXdR5SdZMj1voenGdxK023ZjZTvVY2PCamYq9tY1BHDyg9D9nChJEfIbJWbiBfRgFhy3ke35EuYpjW34rZW6HJbR+/QEDi2Lekh7bOjPq489Ha0NgIM23TcbCuAoIwYXlRpuBT3BDykmHm+XoE1 art@DESKTOP-4MLNIQC\n"
-            },
-            "metadata_options": [
-              {
-                "aws_v1_http_endpoint": 1,
-                "aws_v1_http_token": 2,
-                "gce_http_endpoint": 1,
-                "gce_http_token": 1
-              }
-            ],
-            "name": "web-server-0",
-            "network_acceleration_type": "standard",
-            "network_interface": [
-              {
-                "dns_record": [],
-                "index": 0,
-                "ip_address": "10.0.1.11",
-                "ipv4": true,
-                "ipv6": false,
-                "ipv6_address": "",
-                "ipv6_dns_record": [],
-                "mac_address": "d0:0d:18:0d:65:2f",
-                "nat": false,
-                "nat_dns_record": [],
-                "nat_ip_address": "",
-                "nat_ip_version": "",
-                "security_group_ids": [],
-                "subnet_id": "e9bsuf7amgirp2c46ar6"
-              }
-            ],
-            "placement_policy": [
-              {
-                "host_affinity_rules": [],
-                "placement_group_id": "",
-                "placement_group_partition": 0
-              }
-            ],
-            "platform_id": "standard-v1",
-            "resources": [
-              {
-                "core_fraction": 100,
-                "cores": 2,
-                "gpus": 0,
-                "memory": 2
-              }
-            ],
-            "scheduling_policy": [
-              {
-                "preemptible": false
-              }
-            ],
-            "secondary_disk": [],
-            "service_account_id": "",
-            "status": "running",
-            "timeouts": null,
-            "zone": "ru-central1-a"
-          },
-          "sensitive_attributes": [],
-          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozMDAwMDAwMDAwMDAsImRlbGV0ZSI6MzAwMDAwMDAwMDAwLCJ1cGRhdGUiOjMwMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMSJ9",
-          "dependencies": [
-            "data.yandex_compute_image.ubuntu",
-            "yandex_vpc_gateway.nat_gateway",
-            "yandex_vpc_network.default",
-            "yandex_vpc_route_table.private_rt",
-            "yandex_vpc_subnet.private"
-          ]
-        },
         {
           "index_key": 1,
           "schema_version": 1,
           "attributes": {
             "allow_recreate": null,
-            "allow_stopping_for_update": true,
+            "allow_stopping_for_update": null,
             "boot_disk": [
               {
                 "auto_delete": true,
-                "device_name": "fhmq5r633p44mup05k94",
-                "disk_id": "fhmq5r633p44mup05k94",
+                "device_name": "fhmabgccvc9280h5du33",
+                "disk_id": "fhmabgccvc9280h5du33",
                 "initialize_params": [
                   {
                     "block_size": 4096,
@@ -311,11 +197,11 @@
                 "mode": "READ_WRITE"
               }
             ],
-            "created_at": "2024-11-19T19:13:46Z",
+            "created_at": "2024-11-19T16:24:15Z",
             "description": "",
             "filesystem": [],
             "folder_id": "b1ghogsb3rjondr2ektf",
-            "fqdn": "fhmh7rr39h3idk1ifvag.auto.internal",
+            "fqdn": "web-server-1.ru-central1.internal",
             "gpu_cluster_id": "",
             "hardware_generation": [
               {
@@ -327,14 +213,14 @@
                 ]
               }
             ],
-            "hostname": "",
-            "id": "fhmh7rr39h3idk1ifvag",
+            "hostname": "web-server-1",
+            "id": "fhms3onl33nldh332iom",
             "labels": {},
             "local_disk": [],
             "maintenance_grace_period": "",
             "maintenance_policy": null,
             "metadata": {
-              "ssh-keys": "ubuntu:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDdMZmeNv0/Vm8AFI39D8dT1YCwFK4TxsOMYI2pfl01AcESUiNip4zvqztDqLSu1nDwzgsa5v6ryeHsZdJHcLzqcCuww0k0c/sb8/5P1hh8cSoEa3RFZRC7P+6ZSrRgksMaJfUzBMYdBDvBFUh4KeZ3LbVY4vWKkqPAh29WJmMlEzo/HbzXNUo9tRXNaRnLP59P5MXdR5SdZMj1voenGdxK023ZjZTvVY2PCamYq9tY1BHDyg9D9nChJEfIbJWbiBfRgFhy3ke35EuYpjW34rZW6HJbR+/QEDi2Lekh7bOjPq489Ha0NgIM23TcbCuAoIwYXlRpuBT3BDykmHm+XoE1 art@DESKTOP-4MLNIQC\n"
+              "ssh-keys": "ubuntu:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCfI8v/7qc6R2jPvNfTff5bbY19xb7g8wkit7zbGA6HmefXEh8WivUGNZJ4CdAa2n4E+yL8FTRGU5ilN4maCsJua5sJKd2QxALtJb+eZWBqjb2NpZRl09ffukt5D9P9ZZLcK0KfGAiv50ujUBhNL9a89JmKjooFsn4FP7bz3QtOeHc+6bDChmo1MBNBKkvC13Ad64lxjfVYO27IgLFycmoJK1hOjx/XMd0fkqAm2SAtrKLZ0pr6eBcJzFLmmH9J7ByJh8D0yNxTPU5c2+YDWj1mgqOksg+jQow52CG92nD6u2hmg4jESP284odyXfQvh99mL98Bap0I3TKix1YoShXF art@DESKTOP-4MLNIQC\n"
             },
             "metadata_options": [
               {
@@ -350,12 +236,12 @@
               {
                 "dns_record": [],
                 "index": 0,
-                "ip_address": "10.0.1.31",
+                "ip_address": "10.0.1.17",
                 "ipv4": true,
                 "ipv6": false,
                 "ipv6_address": "",
                 "ipv6_dns_record": [],
-                "mac_address": "d0:0d:11:3e:f6:34",
+                "mac_address": "d0:0d:1c:1e:2f:51",
                 "nat": false,
                 "nat_dns_record": [],
                 "nat_ip_address": "",
@@ -374,7 +260,7 @@
             "platform_id": "standard-v1",
             "resources": [
               {
-                "core_fraction": 100,
+                "core_fraction": 20,
                 "cores": 2,
                 "gpus": 0,
                 "memory": 2
@@ -387,7 +273,7 @@
             ],
             "secondary_disk": [],
             "service_account_id": "",
-            "status": "running",
+            "status": "stopped",
             "timeouts": null,
             "zone": "ru-central1-a"
           },
@@ -395,9 +281,6 @@
           "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozMDAwMDAwMDAwMDAsImRlbGV0ZSI6MzAwMDAwMDAwMDAwLCJ1cGRhdGUiOjMwMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMSJ9",
           "dependencies": [
             "data.yandex_compute_image.ubuntu",
-            "yandex_vpc_gateway.nat_gateway",
-            "yandex_vpc_network.default",
-            "yandex_vpc_route_table.private_rt",
             "yandex_vpc_subnet.private"
           ]
         }
