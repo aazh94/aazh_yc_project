@@ -1,4 +1,3 @@
-# Целевая группа
 resource "yandex_alb_target_group" "web_tg" {
   name = "web-target-group"
 
@@ -13,13 +12,12 @@ resource "yandex_alb_target_group" "web_tg" {
   }
 }
 
-# Группа бэкендов
 resource "yandex_alb_backend_group" "web_bg" {
   name = "web-backend-group"
 
   http_backend {
     name             = "web-http-backend"
-    weight   = 1
+    weight           = 1
     port             = 80
     target_group_ids = [yandex_alb_target_group.web_tg.id]
 
@@ -28,24 +26,22 @@ resource "yandex_alb_backend_group" "web_bg" {
     }
 
     healthcheck {
-      timeout              = "10s"
-      interval             = "2s"
-      healthy_threshold    = 2
-      unhealthy_threshold  = 3
-      stream_healthcheck {
-        send               = "ping"
-        receive            = "pong"
+      timeout             = "10s"
+      interval            = "2s"
+      healthy_threshold   = 2
+      unhealthy_threshold = 3
+
+      http_healthcheck {
+        path = "/"
       }
     }
   }
 }
 
-# HTTP роутер
 resource "yandex_alb_http_router" "web_router" {
   name = "web-http-router111"
 }
 
-# Виртуальный хост и маршрут
 resource "yandex_alb_virtual_host" "web_vhost" {
   name           = "web-virtual-host"
   http_router_id = yandex_alb_http_router.web_router.id
@@ -54,6 +50,12 @@ resource "yandex_alb_virtual_host" "web_vhost" {
     name = "web-route"
 
     http_route {
+      http_match {
+        path {
+          prefix = "/"
+        }
+      }
+
       http_route_action {
         backend_group_id = yandex_alb_backend_group.web_bg.id
         timeout          = "60s"
@@ -62,7 +64,6 @@ resource "yandex_alb_virtual_host" "web_vhost" {
   }
 }
 
-# Балансировщик нагрузки (L7)
 resource "yandex_alb_load_balancer" "web_alb" {
   name       = "web-application-load-balancer"
   network_id = yandex_vpc_network.default.id
